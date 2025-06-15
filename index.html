@@ -306,39 +306,52 @@
                         <a class="btn btn-light rounded-pill py-3 px-5" href="">Explore More</a>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="h-100 d-flex align-items-center justify-content-center" style="min-height: 300px;">
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://youtu.be/nziA33FrhoI" data-bs-target="https://youtu.be/nziA33FrhoI">
-                            <span></span>
-                        </button>
-                    </div>
+               <!-- Video Section Start -->
+<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+    <div class="h-100 d-flex align-items-center justify-content-center" style="min-height: 300px;">
+        <button type="button" class="btn-play" data-bs-toggle="modal"
+            data-src="https://www.youtube.com/embed/nziA33FrhoI" data-bs-target="#videoModal">
+            <span></span>
+        </button>
+    </div>
+</div>
+<!-- Video Section End -->
+
+<!-- Video Modal Start -->
+<div class="modal modal-video fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Video Preview</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="ratio ratio-16x9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                        allow="autoplay"></iframe>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Video End -->
+</div>
+<!-- Video Modal End -->
 
+<!-- JavaScript to handle video modal -->
+<script>
+    var videoModal = document.getElementById('videoModal');
+    var video = document.getElementById('video');
 
-    <!-- Video Modal Start -->
-    <div class="modal modal-video fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">https://youtu.be/nziA33FrhoI</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                            allow="autoplay"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Video Modal End -->
+    videoModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var videoSrc = button.getAttribute('data-src');
+        video.setAttribute('src', videoSrc + "?autoplay=1&modestbranding=1&showinfo=0");
+    });
+
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        video.setAttribute('src', '');
+    });
+</script>
 
 
     <!-- Store Start -->
